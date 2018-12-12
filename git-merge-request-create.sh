@@ -69,7 +69,7 @@ while getopts 'p:s:t:m:d:vuh' arg; do
 		exit 0
 		;;
 	u)
-		curl -fsSL "https://raw.githubusercontent.com/greedbell/git-merge-request/master/git-merge-request-install.sh" | /bin/sh
+		curl -o- "https://raw.githubusercontent.com/greedbell/git-merge-request/master/git-merge-request-install.sh" | /bin/sh
 		exit 0
 		;;
 	h)
