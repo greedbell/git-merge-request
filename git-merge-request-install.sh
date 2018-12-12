@@ -5,8 +5,8 @@
 #
 
 INSTALL_DIR=/usr/local/bin
-gmrc_version=0.0.5
-gmrl_version=0.0.5
+gmrc_version=0.0.6
+gmrl_version=0.0.6
 
 # check env
 if [[ ! -w ${INSTALL_DIR} ]]; then
@@ -22,9 +22,12 @@ fi
 
 # install gmrc
 installGmrc() {
+  echo "Installing gmrc ..."
+  echo
 	curl https://raw.githubusercontent.com/greedbell/git-merge-request/${gmrc_version}/git-merge-request-create.sh --output ${INSTALL_DIR}/gmrc || exit 1
 	chmod a+x ${INSTALL_DIR}/gmrc
-	echo "gmrc has been installed, run \"gmrc -h\" to show help"
+  echo
+	echo "gmrc ${gmrc_version} has been installed, run \"gmrc -h\" to show help"
 	echo
 }
 
@@ -42,9 +45,12 @@ fi
 
 # install gmrl
 installGmrl() {
+  echo "Installing gmrl ..."
+  echo
 	curl https://raw.githubusercontent.com/greedbell/git-merge-request/${gmrl_version}/git-merge-request-list.sh --output ${INSTALL_DIR}/gmrl || exit 1
 	chmod a+x ${INSTALL_DIR}/gmrl
-	echo "gmrl has been installed, run \"gmrl -h\" to show help"
+  echo
+	echo "gmrl ${gmrl_version} has been installed, run \"gmrl -h\" to show help"
 	echo
 }
 

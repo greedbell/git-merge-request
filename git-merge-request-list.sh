@@ -7,16 +7,17 @@
 usage() {
 	echo
 	echo "Usage:"
-	echo " ${0##*/} [-p <PROJECT NAME>] [-s <STATE>] [-v] [-h]"
+	echo " ${0##*/} [-p <PROJECT NAME>] [-s <STATE>] [-v] [-u] [-h]"
 	echo
 	echo "Options:"
-	echo " -p: default current project"
-	echo " -s: filt merge request, [all, opened, closed, locked, merged], default opened"
+	echo " -p: target project, default current project"
+	echo " -s: filt merge request, must be on of [all, opened, closed, locked, merged], default opened"
 	echo " -v: show version"
+  echo " -u: check update"
 	echo " -h: show help"
 	echo
 	echo "Example 1:"
-	echo " ${0##*/} -p bell/owl-ios -s all"
+	echo " ${0##*/} -p greedbell/git-merge-request -s all"
 	echo "Example 2:"
 	echo " ${0##*/}"
 	echo
@@ -52,14 +53,27 @@ urldecode() {
 	printf '%b' "${url_encoded//%/\\x}"
 }
 
-version=0.0.5
-while getopts 'p:s:vh' arg; do
+version=0.0.6
+while getopts 'p:s:vuh' arg; do
 	case $arg in
 	p) gitlab_project_name=$OPTARG ;;
 	s) state=$OPTARG ;;
-	v) echo ${version} && exit 0 ;;
-	h) usage && exit 0 ;;
-	?) usage && exit 1 ;;
+	v)
+		echo ${version}
+		exit 0
+		;;
+	u)
+		curl -fsSL "https://raw.githubusercontent.com/greedbell/git-merge-request/master/git-merge-request-install.sh" | /bin/sh
+		exit 0
+		;;
+	h)
+		usage
+		exit 0
+		;;
+	?)
+		usage
+		exit 1
+		;;
 	esac
 done
 

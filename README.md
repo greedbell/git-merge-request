@@ -45,19 +45,20 @@ Create Merge Request
 $ gmrc -h
 
 Usage:
- gmrc [-p <PROJECT Name>] [-s <SOURCE BRANCH>] [-t <TARGET BRANCH>] [-m <TITLE>] [-d <DISABLE AUTO PUSH>] [-v] [-h]
+ gmrc [-p <PROJECT NAME>] [-s <SOURCE BRANCH>] [-t <TARGET BRANCH>] [-m <TITLE>] [-d <DISABLE AUTO PUSH>] [-v] [-u] [-h]
 
 Options:
- -p: default current project
- -s: default current branch
- -t: default master branch
- -m: default latest commit
- -d: default auto push current branch to origin branch, if set disable auto push
+ -p: target project, default current project
+ -s: source branch, default current branch
+ -t: target branch, default master
+ -m: merge request title, default latest commit
+ -d: whether disable auto push to remote branch, default true, if false disable
  -v: show version
+ -u: check update
  -h: show help
 
 Example 1:
- gmrc -p bell/owl-ios -s test -t master -m title -d
+ gmrc -p greedbell/git-merge-request -s test -t master -m title -d
 Example 2
  gmrc
 ```
@@ -70,16 +71,17 @@ List Merge Request
 $ gmrl -h
 
 Usage:
- gmrl [-p <PROJECT NAME>] [-s <STATE>] [-v] [-h]
+ gmrl [-p <PROJECT NAME>] [-s <STATE>] [-v] [-u] [-h]
 
 Options:
- -p: default current project
- -s: filt merge request, [all, opened, closed, locked, merged], default opened
+ -p: target project, default current project
+ -s: filt merge request, must be on of [all, opened, closed, locked, merged], default opened
  -v: show version
+ -u: check update
  -h: show help
 
 Example 1:
- gmrl -p bell/owl-ios -s all
+ gmrl -p greedbell/git-merge-request -s all
 Example 2:
  gmrl
 ```
