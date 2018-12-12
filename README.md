@@ -2,7 +2,7 @@
 
 Create and list gitlab merge request
 
-## Install
+## Installation
 
 ```shell
 curl -fsSL "https://raw.githubusercontent.com/greedbell/git-merge-request/master/git-merge-request-install.sh" | /bin/sh
