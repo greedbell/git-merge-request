@@ -115,10 +115,10 @@ fi
 checkShellEnv
 checkAccessToken
 
-# test gitlab api address
-echo curl -sSf ${GITLAB_API_ADDRESS}/projects >/dev/null || exit 1
-
 project_id=$(urlencode $gitlab_project_name)
+
+# test gitlab api
+curl -sSf ${GITLAB_API_ADDRESS}/projects/${project_id} >/dev/null || exit 1 
 
 # create merge request
 # @ref https://github.com/gitlabhq/gitlabhq/blob/master/doc/api/merge_requests.md#create-mr
@@ -129,4 +129,4 @@ merge_request=$(curl --silent --request POST \
 	--form "source_branch=${source}" \
 	--form "target_branch=${target}" \
 	--form "title=${title}")
-echo ${merge_request} | jq 'if has("web_url") == true then {title: .title, address: .web_url} else .message end'
+echo ${merge_request} | jq 'if has("web_url") == true then {title, address: .web_url, state, created_at} else .message end'
