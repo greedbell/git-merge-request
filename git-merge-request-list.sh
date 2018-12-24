@@ -94,12 +94,14 @@ fi
 checkAccessToken
 checkShellEnv
 
-# test gitlab api address
-echo curl -sSf ${GITLAB_API_ADDRESS}/projects >/dev/null || exit 1
-
 project_id=$(urlencode $gitlab_project_name)
+
+# test gitlab api
+curl -sSf ${GITLAB_API_ADDRESS}/projects/${project_id} >/dev/null || exit 1 
+
 # list merge request
 # @ref https://github.com/gitlabhq/gitlabhq/blob/master/doc/api/merge_requests.md#list-project-merge-requests
 merge_requests=$(curl --silent --header "PRIVATE-TOKEN: ${GITLAB_ACCESS_TOKEN}" \
 	"${GITLAB_API_ADDRESS}/projects/${project_id}/merge_requests?state=${state}")
-echo ${merge_requests} | jq '.[] | {title: .title, address: .web_url}'
+
+echo ${merge_requests} | jq '.[] | {title, address: .web_url, state, created_at}'
