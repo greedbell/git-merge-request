@@ -53,7 +53,7 @@ urldecode() {
 	printf '%b' "${url_encoded//%/\\x}"
 }
 
-version=0.0.6
+version=0.1.0
 while getopts 'p:s:vuh' arg; do
 	case $arg in
 	p) gitlab_project_name=$OPTARG ;;
