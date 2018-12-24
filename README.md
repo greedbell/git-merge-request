@@ -5,7 +5,7 @@ Create and list gitlab merge request
 ## Installation
 
 ```shell
-curl -fsSL "https://raw.githubusercontent.com/greedbell/git-merge-request/master/git-merge-request-install.sh" | /bin/sh
+curl -o- "https://raw.githubusercontent.com/greedbell/git-merge-request/master/git-merge-request-install.sh" | /bin/sh
 ```
 
 This command will install `gmrl` to list gitlab merge request, and `gmrc` to create gitlab merge request.
