@@ -56,7 +56,7 @@ urldecode() {
 	printf '%b' "${url_encoded//%/\\x}"
 }
 
-version=0.1.0
+version=0.1.1
 while getopts 'p:s:t:m:d:vuh' arg; do
 	case $arg in
 	p) gitlab_project_name=$OPTARG ;;
@@ -118,7 +118,7 @@ checkAccessToken
 project_id=$(urlencode $gitlab_project_name)
 
 # test gitlab api
-curl -sSf ${GITLAB_API_ADDRESS}/projects/${project_id} >/dev/null || exit 1 
+curl --silent --header "PRIVATE-TOKEN: ${GITLAB_ACCESS_TOKEN}" "${GITLAB_API_ADDRESS}/projects/${project_id}" >/dev/null || exit 1
 
 # create merge request
 # @ref https://github.com/gitlabhq/gitlabhq/blob/master/doc/api/merge_requests.md#create-mr

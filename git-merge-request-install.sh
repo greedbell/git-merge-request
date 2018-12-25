@@ -5,8 +5,8 @@
 #
 
 INSTALL_DIR=/usr/local/bin
-gmrc_version=0.1.0
-gmrl_version=0.1.0
+gmrc_version=0.1.1
+gmrl_version=0.1.1
 
 # check env
 if [[ ! -w ${INSTALL_DIR} ]]; then
